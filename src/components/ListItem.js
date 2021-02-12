@@ -6,8 +6,8 @@ import {connect} from 'react-redux';
 
 class ListItem extends Component {
   renderDescriptions() {
-    const {library, selectLibraryId} = this.props;
-    if (selectLibraryId === library.item.id) {
+    const {library, expand} = this.props;
+    if (expand) {
       return (
         <View>
           <Text> {library.item.description}</Text>
@@ -34,11 +34,16 @@ class ListItem extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    // tên props dùng  _______gioống tên key ở chỗ combineReducer
-    selectLibraryId: state.selectLibraryId,
-  };
+const mapStateToProps = (state, ownProps) => {
+  //ownprops = this.props trong cái class kia
+  const expand = state.selectLibraryId === ownProps.library.item.id;
+  // trả về obj là 1 thuộc tính của props
+  // return {expand: expand};
+  return {expand};
+  // return {
+  //   // tên props dùng  _______gioống tên key ở chỗ combineReducer
+  //   selectLibraryId: state.selectLibraryId,
+  // };
 };
 // map state and connect actions
 export default connect(mapStateToProps, actions)(ListItem);
