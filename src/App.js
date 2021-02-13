@@ -7,7 +7,6 @@ import reducers from './reducers';
 
 import {Header} from './components/common';
 import LibraryList from './components/LibraryList';
-import FlatListTest from './components/FlatListTest';
 
 const App = () => {
   return (

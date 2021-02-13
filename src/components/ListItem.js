@@ -1,17 +1,26 @@
 import React, {Component} from 'react';
-import {Text, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  LayoutAnimation,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {CardSection} from './common';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
 
 class ListItem extends Component {
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+
   renderDescriptions() {
     const {library, expand} = this.props;
     if (expand) {
       return (
-        <View>
-          <Text> {library.item.description}</Text>
-        </View>
+        <CardSection>
+          <Text style={{flex: 1}}> {library.item.description}</Text>
+        </CardSection>
       );
     }
   }
